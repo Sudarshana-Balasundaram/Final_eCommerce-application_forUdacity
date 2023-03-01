@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment{
+        JAVA_HOME = tool 'Java 11'
+        MAVEN_HOME = tool 'Maven'
+    }
     stages {
         stage('Build') {
             steps {
