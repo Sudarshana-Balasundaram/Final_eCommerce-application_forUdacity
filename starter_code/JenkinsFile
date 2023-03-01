@@ -6,7 +6,7 @@ pipeline {
              maven 'maven'
          }
          steps {
-             sh 'mvn -f Final_eCommerce-application_forUdacity/starter_code/pom.xml clean install -DskipTests'
+             sh 'mvn -f starter_code/pom.xml clean install -DskipTests'
          }
      }
  }
