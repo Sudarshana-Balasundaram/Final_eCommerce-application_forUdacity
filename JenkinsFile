@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh '${MAVEN_HOME}/bin/mvn clean package -DskipTests'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh '${MAVEN_HOME}/bin/mvn test'
             }
         }
     }
