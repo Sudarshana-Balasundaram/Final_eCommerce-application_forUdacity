@@ -1,28 +1,30 @@
 pipeline {
-  agent any
-  environment {
-    JAVA_HOME = tool 'Java 11'
-    MAVEN_HOME = tool 'Maven'
-  }
-  stages {
-    stage('Build') {
-      steps {
-        node {
-          sh 'mvn clean package -DskipTests'
+    agent none
+    stages {
+        stage('Build') {
+            agent {
+                node {
+                    label 'my-label'
+                }
+            }
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
         }
-      }
-    }
-    stage('Test') {
-      steps {
-        node {
-          sh 'mvn test'
+        stage('Test') {
+            agent {
+                node {
+                    label 'my-label'
+                }
+            }
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
         }
-      }
     }
-  }
-  post {
-    always {
-      junit 'target/surefire-reports/*.xml'
-    }
-  }
 }
