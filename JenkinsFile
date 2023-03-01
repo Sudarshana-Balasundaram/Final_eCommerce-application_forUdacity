@@ -1,24 +1,10 @@
 pipeline {
-    agent any
-    environment{
-        JAVA_HOME = tool 'Java 11'
-        MAVEN_HOME = tool 'Maven'
-    }
-    stages {
-        stage('Build') {
-            steps {
-                sh '${MAVEN_HOME}/bin/mvn clean package -DskipTests'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh '${MAVEN_HOME}/bin/mvn test'
-            }
-        }
-    }
-    post {
-         always {
-             junit 'target/surefire-reports/*.xml'
+ agent { docker { image 'maven:3.3.3' } }
+ stages {
+     stage('build') {
+         steps {
+             sh 'mvn --version'
          }
-    }
+     }
+ }
 }
