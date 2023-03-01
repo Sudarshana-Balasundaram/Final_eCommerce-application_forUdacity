@@ -3,7 +3,7 @@ pipeline {
  stages {
      stage('build') {
          tools{
-             maven 'maven3.3.9'
+             maven 'maven3.2.1'
          }
          steps {
              sh '{MAVEN_HOME}/bin/mvn --version'
