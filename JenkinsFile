@@ -6,7 +6,7 @@ pipeline {
              maven 'maven'
          }
          steps {
-             sh '{MAVEN_HOME}/bin/mvn --version'
+             sh 'mvn --version'
          }
      }
  }
