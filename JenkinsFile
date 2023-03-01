@@ -2,6 +2,9 @@ pipeline {
  agent any
  stages {
      stage('build') {
+         tools{
+             maven 'maven3.3.9'
+         }
          steps {
              sh '{MAVEN_HOME}/bin/mvn --version'
          }
